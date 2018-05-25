@@ -1,0 +1,21 @@
+.search-input {
+  margin-right: $input;
+  width: 90% !important;
+  left: 15px;
+
+
+  @media (min-width: $desktop-breakpoint) {
+    margin: 0 $input 0 0;
+
+
+  }
+}
+
+.search-input_button {
+  left: 15px;
+  width: 90% !important;
+
+  @media (min-width: $desktop-breakpoint) {
+    width: 10% !important;
+  }
+}

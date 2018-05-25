@@ -1,0 +1,33 @@
+.content-conatainer {
+  margin: 0 auto;
+  padding: 0 $m-size;
+  max-width: 80rem;
+}
+
+.content-conatainer1 {
+  margin: 0 auto;
+  margin-bottom: 20px;
+  padding: 0 $m-size;
+  max-width: 80rem;
+
+  @media (min-width: $desktop-breakpoint) {
+    margin: 0 auto;
+    max-width: 40rem;
+    margin-bottom: 20px;
+    margin-left:auto;
+    margin-right:50%;
+  }
+}
+
+.content-conatainer_highest-value {
+  margin: 0 auto;
+  margin-bottom: 20px;
+  padding: 0 $m-size;
+  max-width: 35rem;
+
+  @media (min-width: $desktop-breakpoint) {
+    float:right;
+    left: 4%;
+    clear:both;
+  }
+}
