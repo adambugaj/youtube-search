@@ -4,6 +4,8 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import TextField from 'material-ui/TextField';
 import { Card, CardMedia, CardText, CardActions, CardTitle } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
+import { showVideo } from '../actions/results';
+import MainContent from './MainContent';
 
 // Pokazuje listę zapisanych transakcji
 class VideoList extends React.Component {
@@ -14,14 +16,14 @@ class VideoList extends React.Component {
     };
   };
 
-onClickImage = (video, e) => {
-  console.log(video);
-
+onClickImage = (video) => {
+  console.log(this.props);
+  this.setState(() => ({ videoId: video }));
 }
   render() {
-    console.log(this.props);
     return (
       <div className="content-conatainer1">
+        <MainContent videoId={this.state.videoId} />
         <MuiThemeProvider>
           <Card className="video_list">
             {this.props.value.length !== 0 && this.props.value.images.map((jpg) => {
@@ -50,7 +52,7 @@ onClickImage = (video, e) => {
 const mapStateToProps = (state) => {
   console.log(state);
   return {
-    value: state.value
+    value: state.value,
   };
 }
 

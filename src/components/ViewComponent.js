@@ -5,7 +5,7 @@ import Header from './Header';
 import VideoList from './VideoList';
 import { searchResult } from '../actions/results';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import MainContent from './MainContent';
+
 
 // AppRouter Łączy komponenty w całosc i wyswietla na jednej stronie
 const View = (props) => {
@@ -19,7 +19,6 @@ console.log(props.value);
           props.dispatch(searchResult(imagesArray));
         }}
       />
-      <MainContent />
       <VideoList />
     </div>
   );
