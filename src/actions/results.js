@@ -8,8 +8,6 @@ const searchResult = ({
   type: "SEARCH_VALUE",
   value: {
     images,
-    title,
-    description,
   }
 });
 

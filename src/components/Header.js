@@ -54,20 +54,22 @@ class Header extends Component {
 
   render() {
     return (
-      <div>
-        <Toggle
-          label="Logged"
-          defaultToggled={true}
-          onToggle={this.handleChange}
-          labelPosition="right"
-          style={{margin: 20}}
-        />
-        <AppBar
-          title="Youtube Search"
-          iconElementLeft={<IconButton><NavigationClose /></IconButton>}
-          iconElementRight={this.state.logged ? <Logged /> : <Login />}
-        />
-      </div>
+      <MuiThemeProvider>
+        <div>
+          <Toggle
+            label="Logged"
+            defaultToggled={true}
+            onToggle={this.handleChange}
+            labelPosition="right"
+            style={{margin: 20}}
+          />
+          <AppBar
+            title="Youtube Search"
+            iconElementLeft={<IconButton><NavigationClose /></IconButton>}
+            iconElementRight={this.state.logged ? <Logged /> : <Login />}
+          />
+        </div>
+      </MuiThemeProvider>
     );
   }
 }

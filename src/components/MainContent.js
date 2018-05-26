@@ -1,43 +1,38 @@
+import React from 'react';
+import { connect } from 'react-redux';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import { Card, CardMedia, CardText, CardActions, CardTitle } from 'material-ui/Card';
+
 const MainContent = (props) => {
-  const key = 'AIzaSyBn2mtLpsUWsVx9P49PoJXFyhuy51b7xUk';
-  const apiUrl = `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&q=${45}&type=video&key=${key}`;
-
-  const searchOptions = {
-    key: key,
-    part: 'snippet',
-    maxResults: 10,
-  };
-
-  fetch(apiUrl)
-  .then((response) => response.json())
-  .then((result) => {
-    console.log(result);
-    result.items.map((video) => {
-      console.log(video.snippet.thumbnails.medium.url);
-    });
-  });
+  console.log(props)
   return (
     <div className="content-conatainer1">
       <MuiThemeProvider>
         <Card>
-          <CardTitle title={`Nazwa: ${props.transactionName}`} />
+          <CardMedia>
+            <iframe
+              width="250"
+              height="250"
+              src="https://www.youtube.com/embed/MLeIyy2ipps"
+              frameBorder="0"
+              allow="autoplay; encrypted-media"
+              allowFullScreen>
+            </iframe>
+          </CardMedia>
+          <CardTitle title={`Nazwa: ${props.value.transactionName}`} />
           <CardText>
-
-            <div>
-              <iframe
-                width="200"
-                height="200"
-                src="https://www.youtube.com/embed/MLeIyy2ipps"
-                frameBorder="0"
-                allow="autoplay; encrypted-media"
-                allowFullScreen>
-              </iframe>
-              <p>Text: <strong>{props.searchInput}</strong></p>
-            </div>
-            
+            Video description{props.searchInput}
           </CardText>
         </Card>
       </MuiThemeProvider>
     </div>
   )
 }
+
+const mapStateToProps = (state) => {
+  return {
+    value: state.value
+  };
+}
+
+export default connect(mapStateToProps)(MainContent);

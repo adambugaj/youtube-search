@@ -27,11 +27,12 @@ class Search extends React.Component {
     super(props);
     this.state = {
       images: [],
-    }
-  }
+    };
+  };
 
   onChangeInput = (e) => {
     const value = e.target.value;
+
     this.setState(() => ({ searchInput: value }));
     // Youtube Api
     const key = 'AIzaSyBn2mtLpsUWsVx9P49PoJXFyhuy51b7xUk';
@@ -41,9 +42,10 @@ class Search extends React.Component {
     .then((result) => {
       result.items.map((video) => {
         const getImage = video.snippet.thumbnails.medium.url;
-        const getTitle = video.snippet.channelTitle;
-        let getDescription = video.snippet.description;
-          console.log(getDescription);
+        const getTitle = video.snippet.title.substring(0, 30);
+        const getDescription = video.snippet.description.substring(0, 100);
+        const getVideoId = video.id.videoId;
+
         // It prevents from duplicate loop
         if(this.state.images.length + 1 > 5) {
           this.state.images = [];
@@ -51,9 +53,10 @@ class Search extends React.Component {
 
         this.setState(() => ({
           images: [...this.state.images, {
-            image:getImage,
+            image: getImage,
             title: getTitle,
             description: getDescription,
+            videoId: getVideoId,
           }]
         }));
       });
@@ -73,7 +76,6 @@ class Search extends React.Component {
 
 // Interfejs aplikacji oraz komponenty material-ui
   render() {
-    console.log(this.state.images)
     return (
       <div className="content-conatainer">
         <form onSubmit={this.onSubmit}>
