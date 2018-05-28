@@ -7,24 +7,15 @@ import { searchResult } from '../actions/results';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import MainContent from './MainContent';
 import CircularProgress from 'material-ui/CircularProgress';
+import View from './ViewComponent';
 
 // AppRouter Łączy komponenty w całosc i wyswietla na jednej stronie
-const View = (props) => {
+const PublicDashboard = (props) => {
 console.log(props);
  return (
     <div>
-      <Search
-        onSubmit={// Zatwierdza nową listę
-          (imagesArray) => {
-          props.dispatch(searchResult(imagesArray));
-        }}
-      />
-      <div className="content-conatainer">
-        <MainContent
-          videoId={props.mainVideo.videoId} videoTitle={props.mainVideo.videoTitle} videoDesc={props.mainVideo.videoDesc}
-        />
-      </div>
-      { props.value.length !== 0 && <VideoList /> }
+      <Header />
+      <View />
     </div>
   );
 };
@@ -37,4 +28,4 @@ const mapStateToProps = (state) => {
   };
 }
 
-export default connect(mapStateToProps)(View);
+export default connect(mapStateToProps)(PublicDashboard);

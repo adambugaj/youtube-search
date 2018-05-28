@@ -6,7 +6,6 @@ import { Card, CardMedia, CardText, CardActions, CardTitle } from 'material-ui/C
 const MainContent = (props) => {
   console.log(props)
   return (
-
     <div className="content-conatainer_maincontent">
       {!!props.videoId &&
       <MuiThemeProvider>
@@ -18,7 +17,8 @@ const MainContent = (props) => {
                 src={`https://www.youtube.com/embed/${props.videoId}`}
                 frameBorder="0"
                 allow="autoplay; encrypted-media"
-                allowFullScreen>
+                allowFullScreen
+              >
               </iframe>
             </CardMedia>
             <CardTitle title={`${props.videoTitle}`} />

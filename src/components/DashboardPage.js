@@ -3,18 +3,14 @@ import { connect } from 'react-redux';
 import { startLogin } from '../actions/auth';
 import HeaderDashboard from './HeaderDashboard';
 import MainContent from './MainContent';
+import View from './ViewComponent';
 
 const DashboardPage = (props) => {
   console.log(props.mainVideo.videoId)
   return (
     <div >
       <HeaderDashboard />
-      <div className="content-conatainer">
-        <MainContent
-          videoId={props.mainVideo.videoId}
-          videoTitle={props.mainVideo.videoTitle}
-          videoDesc={props.mainVideo.videoDesc} />
-      </div>
+      <View />
     </div>
   )
 }

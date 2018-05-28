@@ -35,11 +35,7 @@ onClickImage = (video, title, description, id) => {
     console.log(this.props.value);
     return (
       <div>
-      <div className="content-conatainer">
-        <MainContent
-          videoId={this.state.videoId} videoTitle={this.state.videoTitle} videoDesc={this.state.videoDesc}
-        />
-      </div>
+
         <div className={ !!this.state.videoId ? "content-conatainer_aftervideoloaded" : "content-conatainer-main" }>
         <MuiThemeProvider>
           <Card >
