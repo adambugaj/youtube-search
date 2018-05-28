@@ -1,22 +1,12 @@
 
 const searchResult = ({
-  images = [],
+  data = [],
 } = {}
 ) => ({
   type: "SEARCH_VALUE",
   value: {
-    images,
+    data,
   }
 });
 
-const showVideo = ({
-  videoId = '',
-} = {}
-) => ({
-  type: "VIDEO_ID",
-  data: {
-    videoId,
-  }
-});
-
-export { searchResult, showVideo };
+export { searchResult };

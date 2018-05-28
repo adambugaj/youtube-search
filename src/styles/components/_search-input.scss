@@ -6,7 +6,7 @@
 
   @media (min-width: $desktop-breakpoint) {
     margin: 0 $input 0 0;
-
+    left: 20px;
 
   }
 }
@@ -17,5 +17,6 @@
 
   @media (min-width: $desktop-breakpoint) {
     width: 10% !important;
+    left: 20px;
   }
 }

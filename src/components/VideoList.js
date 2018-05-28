@@ -13,41 +13,57 @@ class VideoList extends React.Component {
     super(props);
     this.state = {
       videoId: '',
+      videoTitle: '',
+      videoDesc: '',
+      channelName: '',
     };
   };
 
-onClickImage = (video) => {
-  console.log(this.props);
-  this.setState(() => ({ videoId: video }));
+onClickImage = (video, title, description, id) => {
+  this.setState(() => ({
+    videoId: video,
+    videoTitle: title,
+    videoDesc: description,
+  }))
 }
+
   render() {
+    console.log(this.state.videoId);
     return (
-      <div className="content-conatainer1">
-        <MainContent videoId={this.state.videoId} />
+      <div>
+      <div className="content-conatainer">
+        <MainContent
+          videoId={this.state.videoId} videoTitle={this.state.videoTitle} videoDesc={this.state.videoDesc}
+        />
+      </div>
+        <div className={ !!this.state.videoId ? "content-conatainer_aftervideoloaded" : "content-conatainer-main" }>
         <MuiThemeProvider>
           <Card className="video_list">
-            {this.props.value.length !== 0 && this.props.value.images.map((jpg) => {
-             return <CardMedia
-               className="video_list"
-               onClick={this.onClickImage.bind(this, jpg.videoId)}
-               data-key="as"
-               key={jpg.title + Math.random()}
-               overlay={<CardTitle title={`${jpg.title}...`} subtitle={`${jpg.description}...`} />}
-             >
-             <img
-               className="input-group"
-               alt={jpg.title}
-               src={jpg.image}
-             />
-
+            {this.props.value.length !== 0 && this.props.value.data.map((vid) => {
+              return <CardMedia
+                 className="video_list"
+                 onClick={this.onClickImage.bind(this, vid.videoId, vid.title, vid.description)}
+                 vid-key="as"
+                 key={vid.title + Math.random()}
+                 overlay={<CardTitle title={`${vid.title}...`}
+                 subtitle={vid.channelName}
+                 />}
+               >
+               <img
+                 className="input-group"
+                 alt={vid.title}
+                 src={vid.image}
+               />
             </CardMedia>
             })}
           </Card>
         </MuiThemeProvider>
       </div>
+      </div>
     )
   }
 }
+
 //transaction = {props} - przenosi dane transakcji, która użytkownik chce usunac do komponentu RemoveTransaction
 const mapStateToProps = (state) => {
   console.log(state);

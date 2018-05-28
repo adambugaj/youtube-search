@@ -26,17 +26,20 @@ class Search extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      images: [],
+      data: [],
     };
   };
 
   onChangeInput = (e) => {
     const value = e.target.value;
-
-    this.setState(() => ({ searchInput: value }));
+    console.log(value);
     // Youtube Api
     const key = 'AIzaSyBn2mtLpsUWsVx9P49PoJXFyhuy51b7xUk';
     const apiUrl = `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&q=${value}&type=video&key=${key}`;
+
+
+
+    // Connect with youtube api and fetch video data
     fetch(apiUrl)
     .then((response) => response.json())
     .then((result) => {
@@ -45,20 +48,30 @@ class Search extends React.Component {
         const getTitle = video.snippet.title.substring(0, 30);
         const getDescription = video.snippet.description.substring(0, 100);
         const getVideoId = video.id.videoId;
+        const getChannelId = video.snippet.channelId
+        const apiChannel = `https://www.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&id=${getChannelId}&key=${key}`
 
-        // It prevents from duplicate loop
-        if(this.state.images.length + 1 > 5) {
-          this.state.images = [];
-        }
+        fetch(apiChannel)
+        .then((response) => response.json())
+        .then((data) => {
+          const getName = data.items[0].snippet.localized.title;
+          const getSubs = data.items[0].statistics.subscriberCount;
 
-        this.setState(() => ({
-          images: [...this.state.images, {
-            image: getImage,
-            title: getTitle,
-            description: getDescription,
-            videoId: getVideoId,
-          }]
-        }));
+          // It prevents from duplicate loop
+          if(this.state.data.length + 1 > 5) {
+            this.state.data = [];
+          }
+          this.setState(() => ({
+            data: [...this.state.data, {
+              image: getImage,
+              title: getTitle,
+              description: getDescription,
+              videoId: getVideoId,
+              channelName: getName,
+              subsNumber: getSubs,
+            }]
+          }));
+        });
       });
     }).catch((err) => {
       console.log(err, 'wait to fix it');
@@ -68,9 +81,9 @@ class Search extends React.Component {
 // Po zatwierdzeniu przyciskiem submit wysyłamy dane do obiektu
   onSubmit = (e) => {
       e.preventDefault();
-      console.log(this.state.images);
+      console.log(this.state.data);
       this.props.onSubmit({
-        images: this.state.images,
+        data: this.state.data,
       });
     };
 

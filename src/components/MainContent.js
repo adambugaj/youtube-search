@@ -14,19 +14,18 @@ const MainContent = (props) => {
             <CardMedia>
               <iframe
                 width="250"
-                height="250"
+                height="320"
                 src={`https://www.youtube.com/embed/${props.videoId}`}
                 frameBorder="0"
                 allow="autoplay; encrypted-media"
                 allowFullScreen>
               </iframe>
             </CardMedia>
-            <CardTitle title={`Nazwa: ${props.value.transactionName}`} />
+            <CardTitle title={`${props.videoTitle}`} />
             <CardText>
-              Video description{props.searchInput}
+              {props.videoDesc}
             </CardText>
           </Card>
-
       </MuiThemeProvider>
       }
     </div>
