@@ -38,7 +38,7 @@ onClickImage = (video, title, description, id) => {
       </div>
         <div className={ !!this.state.videoId ? "content-conatainer_aftervideoloaded" : "content-conatainer-main" }>
         <MuiThemeProvider>
-          <Card className="video_list">
+          <Card >
             {this.props.value.length !== 0 && this.props.value.data.map((vid) => {
               return <CardMedia
                  className="video_list"
@@ -47,6 +47,7 @@ onClickImage = (video, title, description, id) => {
                  key={vid.title + Math.random()}
                  overlay={<CardTitle title={`${vid.title}...`}
                  subtitle={vid.channelName}
+                 style={{cursor:'pointer'}}
                  />}
                >
                <img

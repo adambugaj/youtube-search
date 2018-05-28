@@ -27,16 +27,16 @@ class Search extends React.Component {
     super(props);
     this.state = {
       data: [],
+      searchInput: '',
     };
   };
 
   onChangeInput = (e) => {
     const value = e.target.value;
-    console.log(value);
     // Youtube Api
     const key = 'AIzaSyBn2mtLpsUWsVx9P49PoJXFyhuy51b7xUk';
     const apiUrl = `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&q=${value}&type=video&key=${key}`;
-
+    this.setState(() => ({ searchInput: value }))
 
 
     // Connect with youtube api and fetch video data

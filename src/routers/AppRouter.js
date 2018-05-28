@@ -1,27 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Search from '../components/SearchComponent';
-import Header from '../components/Header';
-import VideoList from '../components/VideoList';
-import { searchResult } from '../actions/results';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
+import ViewComponent from '../components/ViewComponent';
+import DashboardPage from '../components/DashboardPage';
 
 // AppRouter Łączy komponenty w całosc i wyswietla na jednej stronie
 const AppRouter = (props) => {
-console.log(props.value);
  return (
-    <div>
-      <MuiThemeProvider>
-        <Header />
-      </MuiThemeProvider>
-      <Search
-        onSubmit={// Zatwierdza nową listę
-          (imagesArray) => {
-          props.dispatch(searchResult(imagesArray));
-        }}
-      />
-      <VideoList />
-    </div>
+   <BrowserRouter>
+      <div>
+        <Switch>
+          <Route path="/" component={ViewComponent} exact={true} />
+          <Route path="/dashboard" component={DashboardPage} />
+        </Switch>
+      </div>
+    </BrowserRouter>
   );
 };
 
