@@ -16,13 +16,22 @@ const jsx = (
   </Provider>
 );
 
-// Run app ID from HTML code
-ReactDOM.render(jsx, document.getElementById('app'));
+let hasRendered = false;
+const renderApp = () => {
+  if(!hasRendered) {
+    ReactDOM.render(jsx, document.getElementById('app'));
+    hasRendered = true;
+  }
+};
 
 firebase.auth().onAuthStateChanged((user) => {
   if(user) {
-    console.log('log in');
+    renderApp();
+    if (history.location.pathname === '/') {
+      history.push('/dashboard');
+    }
   } else {
-    console.log('log out');
+    renderApp();
+    history.push('/')
   }
 });

@@ -4,7 +4,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import TextField from 'material-ui/TextField';
 import { Card, CardMedia, CardText, CardActions, CardTitle } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
-import { showVideo } from '../actions/results';
+import { mainVideo } from '../actions/mainVideo';
 import MainContent from './MainContent';
 
 // Pokazuje listę zapisanych transakcji
@@ -15,7 +15,6 @@ class VideoList extends React.Component {
       videoId: '',
       videoTitle: '',
       videoDesc: '',
-      channelName: '',
     };
   };
 
@@ -24,11 +23,16 @@ onClickImage = (video, title, description, id) => {
     videoId: video,
     videoTitle: title,
     videoDesc: description,
-  }))
+  }));
+  this.props.mainVideo({
+    videoId: video,
+    videoTitle: title,
+    videoDesc: description,
+  });
 }
 
   render() {
-    console.log(this.state.videoId);
+    console.log(this.props.value);
     return (
       <div>
       <div className="content-conatainer">
@@ -67,10 +71,18 @@ onClickImage = (video, title, description, id) => {
 
 //transaction = {props} - przenosi dane transakcji, która użytkownik chce usunac do komponentu RemoveTransaction
 const mapStateToProps = (state) => {
-  console.log(state);
   return {
     value: state.value,
   };
 }
 
-export default connect(mapStateToProps)(VideoList);
+const mapDispatchToProps = (dispatch) => {
+  return {
+      mainVideo: (video) => {
+          console.log(video)
+        return dispatch(mainVideo(video))
+      }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(VideoList);

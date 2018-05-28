@@ -1,20 +1,22 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
+import { Router, Route, Switch, Link } from 'react-router-dom';
+import createHistory from 'history/createBrowserHistory';
 import ViewComponent from '../components/ViewComponent';
 import DashboardPage from '../components/DashboardPage';
 
+export const history = createHistory();
 // AppRouter Łączy komponenty w całosc i wyswietla na jednej stronie
 const AppRouter = (props) => {
  return (
-   <BrowserRouter>
+   <Router history={history}>
       <div>
         <Switch>
           <Route path="/" component={ViewComponent} exact={true} />
           <Route path="/dashboard" component={DashboardPage} />
         </Switch>
       </div>
-    </BrowserRouter>
+    </Router>
   );
 };
 

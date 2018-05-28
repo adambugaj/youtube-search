@@ -4,7 +4,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { Card, CardMedia, CardText, CardActions, CardTitle } from 'material-ui/Card';
 
 const MainContent = (props) => {
-  console.log(props.videoId)
+  console.log(props)
   return (
 
     <div className="content-conatainer_maincontent">
@@ -35,7 +35,8 @@ const MainContent = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    value: state.value
+    value: state.value,
+    mainVideo: state.mainVideo
   };
 }
 
