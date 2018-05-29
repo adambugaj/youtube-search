@@ -20,7 +20,7 @@ const Header = ({ startLogin }) => {
   console.log(startLogin);
   return (
     <MuiThemeProvider>
-      <div>
+      <div className="input-group">
         <AppBar
           title="Youtube Search"
           //iconElementRight={this.state.logged ? <Logged /> : <Login />}
