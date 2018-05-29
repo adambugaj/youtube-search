@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { Card, CardMedia, CardText, CardActions, CardTitle } from 'material-ui/Card';
+import LikeDislikeButton from './LikeVideo';
 
 const MainContent = (props) => {
   console.log(props)
@@ -22,6 +23,9 @@ const MainContent = (props) => {
               </iframe>
             </CardMedia>
             <CardTitle title={`${props.videoTitle}`} />
+            {props.auth &&
+              <LikeDislikeButton />
+            }
             <CardText>
               {props.videoDesc}
             </CardText>
@@ -36,7 +40,8 @@ const MainContent = (props) => {
 const mapStateToProps = (state) => {
   return {
     value: state.value,
-    mainVideo: state.mainVideo
+    mainVideo: state.mainVideo,
+    auth: !!state.auth.uid
   };
 }
 

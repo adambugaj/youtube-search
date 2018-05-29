@@ -33,7 +33,7 @@ const mapStateToProps = (state) => {
   console.log(state);
   return {
     value: state.value,
-    mainVideo: state.mainVideo
+    mainVideo: state.mainVideo,
   };
 }
 

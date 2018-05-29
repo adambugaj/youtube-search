@@ -8,7 +8,7 @@ import View from './ViewComponent';
 const DashboardPage = (props) => {
   console.log(props.mainVideo.videoId)
   return (
-    <div >
+    <div>
       <HeaderDashboard />
       <View />
     </div>
