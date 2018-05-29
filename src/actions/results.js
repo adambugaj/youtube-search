@@ -1,11 +1,13 @@
 
 const searchResult = ({
   data = [],
+  searchInput,
 } = {}
 ) => ({
   type: "SEARCH_VALUE",
   value: {
     data,
+    searchInput
   }
 });
 

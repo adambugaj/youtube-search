@@ -5,19 +5,19 @@ import { Card, CardMedia, CardText, CardActions, CardTitle } from 'material-ui/C
 import LikeDislikeButton from './LikeVideo';
 
 const MainContent = (props) => {
-  console.log(props)
+  console.log(!!props.videoId)
   return (
     <div className="content-conatainer_maincontent">
       {!!props.videoId &&
       <MuiThemeProvider>
-          <Card>
-            <CardMedia>
+          <Card >
+            <CardMedia >
               <iframe
-                width="250"
-                height="320"
+                width="260"
+                height="330"
                 src={`https://www.youtube.com/embed/${props.videoId}`}
                 frameBorder="0"
-                allow="autoplay; encrypted-media"
+                allow="autoplay"
                 allowFullScreen
               >
               </iframe>

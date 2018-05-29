@@ -4,6 +4,7 @@ import Search from './SearchComponent';
 import Header from './Header';
 import VideoList from './VideoList';
 import { searchResult } from '../actions/results';
+import { mainVideo } from '../actions/mainVideo';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import MainContent from './MainContent';
 import CircularProgress from 'material-ui/CircularProgress';
@@ -15,8 +16,9 @@ console.log(props);
     <div>
       <Search
         onSubmit={// Zatwierdza nową listę
-          (imagesArray) => {
+          (imagesArray, videoData) => {
           props.dispatch(searchResult(imagesArray));
+          props.dispatch(mainVideo(videoData));
         }}
       />
       <div className="content-conatainer">

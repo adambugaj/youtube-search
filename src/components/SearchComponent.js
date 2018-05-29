@@ -5,29 +5,12 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
 
-// Jak przekazywac dane z tego komponentu do DashboardPage - przetestowac!
-const SearchInput = () => {
-  return (
-    <div>
-      <TextField
-          hintText="Search for videos"
-          type="text"
-          className="search-input"
-      />
-        <FlatButton
-          label="Submit"
-          className="search-input_button"
-         />
-    </div>
-  );
-};
-
 class Search extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       data: [],
-      searchInput: '',
+      searchInput: props.value.searchInput ? props.value.searchInput : '',
     };
   };
 
@@ -84,6 +67,13 @@ class Search extends React.Component {
       console.log(this.state.data);
       this.props.onSubmit({
         data: this.state.data,
+        searchInput: this.state.searchInput,
+      }, {
+        mainVideo: {
+          videoId: '',
+          videoTitle: '',
+          videoDesc: '',
+        }
       });
     };
 
@@ -97,6 +87,7 @@ class Search extends React.Component {
             <TextField
                 hintText="Search for videos"
                 type="text"
+                value={this.state.searchInput}
                 onChange={this.onChangeInput}
                 className="search-input"
             />
@@ -108,7 +99,6 @@ class Search extends React.Component {
           </div>
         </MuiThemeProvider>
         </form>
-        <p>this is what you typed {this.state.searchInput}</p>
       </div>
     );
   }

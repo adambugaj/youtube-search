@@ -13,16 +13,12 @@ class VideoList extends React.Component {
     super(props);
     this.state = {
       videoId: '',
-      videoTitle: '',
-      videoDesc: '',
     };
   };
 
 onClickImage = (video, title, description, id) => {
   this.setState(() => ({
     videoId: video,
-    videoTitle: title,
-    videoDesc: description,
   }));
   this.props.mainVideo({
     videoId: video,
@@ -32,11 +28,11 @@ onClickImage = (video, title, description, id) => {
 }
 
   render() {
-    console.log(this.props.value);
+    console.log(this.props);
     return (
       <div>
 
-        <div className={ !!this.state.videoId ? "content-conatainer_aftervideoloaded" : "content-conatainer-main" }>
+        <div className={ !!this.props.video.videoId ? "content-conatainer_aftervideoloaded" : "content-conatainer-main" }>
         <MuiThemeProvider>
           <Card >
             {this.props.value.length !== 0 && this.props.value.data.map((vid) => {
@@ -69,6 +65,7 @@ onClickImage = (video, title, description, id) => {
 const mapStateToProps = (state) => {
   return {
     value: state.value,
+    video: state.mainVideo
   };
 }
 
