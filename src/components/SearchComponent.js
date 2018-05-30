@@ -87,6 +87,7 @@ class Search extends React.Component {
                 hintText="Search for videos"
                 type="text"
                 onChange={this.onChangeInput}
+                value={this.state.searchInput}
                 className="search-input"
             />
               <FlatButton
