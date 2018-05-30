@@ -1,5 +1,6 @@
 import * as firebase from 'firebase';
 
+// It authorize and enables the option to login by Google account
   var config = {
     apiKey: "AIzaSyD8KKLEhwNunmkjRef2sI5xhSY8RK7QjRo",
     authDomain: "search-app-205113.firebaseapp.com",

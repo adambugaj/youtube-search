@@ -1,11 +1,11 @@
-import React, {Component} from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import AppBar from 'material-ui/AppBar';
 import FlatButton from 'material-ui/FlatButton';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { startLogout } from '../actions/auth';
 
-
+// Header for logged-in users
 const HeaderDashboard = ({ startLogout }) => {
   return (
     <MuiThemeProvider>

@@ -10,16 +10,17 @@ class Search extends React.Component {
     super(props);
     this.state = {
       data: [],
-      searchInput: this.props.value.searchInput ? this.props.value.searchInput : '',
+      searchInput: '',
     };
   };
 
+// When a user types, it searches for videodata and fetch it
   onChangeInput = (e) => {
     const value = e.target.value;
     this.setState(() => ({ searchInput: value }))
     // Youtube Api
     const key = 'AIzaSyBn2mtLpsUWsVx9P49PoJXFyhuy51b7xUk';
-    const apiUrl = `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&q=${value}&type=video&key=${key}`;
+    const apiUrl = `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=${value}&type=video&key=${key}`;
 
     // Connect with youtube api and fetch video data
     fetch(apiUrl)
@@ -28,13 +29,11 @@ class Search extends React.Component {
       result.items.map((video) => {
 
         const getImage = video.snippet.thumbnails.medium.url;
-        const getTitle = video.snippet.title.substring(0, 30);
+        const getTitle = video.snippet.title;
         const getDescription = video.snippet.description.substring(0, 100);
         const getVideoId = video.id.videoId;
         const getChannelId = video.snippet.channelId;
         const apiChannel = `https://www.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&id=${getChannelId}&key=${key}`
-
-    console.log(getChannelId)
 
         fetch(apiChannel)
         .then((response) => response.json())
@@ -43,7 +42,7 @@ class Search extends React.Component {
           const getSubs = data.items[0].statistics.subscriberCount;
 
           // It prevents from duplicate loop
-          if(this.state.data.length + 1 > 5) {
+          if(this.state.data.length + 1 > 10) {
             this.state.data = [];
           }
           this.setState(() => ({
@@ -59,16 +58,15 @@ class Search extends React.Component {
         });
       });
     }).catch((err) => {
-      console.log(err, 'wait to fix it');
+      console.log(err, 'Erorr after fetching data from youtube Api');
     });
   };
 
-// Po zatwierdzeniu przyciskiem submit wysyłamy dane do obiektu
+// After submit, data are dispatched and videos are shown
   onSubmit = (e) => {
       e.preventDefault();
       this.props.onSubmit({
         data: !!this.state.data ? this.state.data : this.props.value.data,
-        searchInput: this.state.searchInput,
       }, {
         mainVideo: {
           videoId: '',
@@ -78,7 +76,7 @@ class Search extends React.Component {
       });
     };
 
-// Interfejs aplikacji oraz komponenty material-ui
+// Interface for search content
   render() {
     return (
       <div className="content-conatainer">
@@ -88,7 +86,6 @@ class Search extends React.Component {
             <TextField
                 hintText="Search for videos"
                 type="text"
-                value={this.state.searchInput}
                 onChange={this.onChangeInput}
                 className="search-input"
             />

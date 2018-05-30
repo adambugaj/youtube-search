@@ -1,23 +1,12 @@
-import React, {Component} from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import AppBar from 'material-ui/AppBar';
 import FlatButton from 'material-ui/FlatButton';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { startLogin } from '../actions/auth';
 
-
-class Login extends Component {
-  static muiName = 'FlatButton';
-
-  render() {
-    return (
-      <FlatButton {...this.props} label="Login" />
-    );
-  }
-}
-
+// Public Header for not logged-in users
 const Header = ({ startLogin }) => {
-  console.log(startLogin);
   return (
     <MuiThemeProvider>
       <div className="input-group">

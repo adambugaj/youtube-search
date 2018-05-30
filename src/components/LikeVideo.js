@@ -3,8 +3,8 @@ import Snackbar from 'material-ui/Snackbar';
 import RaisedButton from 'material-ui/RaisedButton';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
+// Shows a like and dislike button only to users who has logged in
 export default class LikeDislikeButton extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -12,27 +12,21 @@ export default class LikeDislikeButton extends React.Component {
       message: ''
     };
   }
-
+  // Shows the information after like button is clicked
   onClickLike = () => {
     this.setState({
       open: true,
       message: 'like'
     });
   };
-
+  // Shows the information after dislike button is clicked
   onClickDislike = () => {
     this.setState({
       open: true,
       message: 'dislike'
     });
   }
-
-  onDoubleClickDislike = () => {
-    this.setState({
-      message: ''
-    });
-  }
-
+  // Closes the snackbar popup
   handleRequestClose = () => {
     this.setState({
       open: false,

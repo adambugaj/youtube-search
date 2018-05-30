@@ -1,17 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Search from './SearchComponent';
-import Header from './Header';
 import VideoList from './VideoList';
 import { searchResult } from '../actions/results';
 import { mainVideo } from '../actions/mainVideo';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import MainContent from './MainContent';
-import CircularProgress from 'material-ui/CircularProgress';
 
-// AppRouter Łączy komponenty w całosc i wyswietla na jednej stronie
+// Shows the interface with search input, main content, and a list of videos
 const View = (props) => {
-console.log(props);
  return (
     <div>
       <Search
@@ -32,7 +28,6 @@ console.log(props);
 };
 
 const mapStateToProps = (state) => {
-  console.log(state);
   return {
     value: state.value,
     mainVideo: state.mainVideo,
