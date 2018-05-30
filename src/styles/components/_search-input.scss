@@ -14,6 +14,7 @@
 .search-input_button {
   left: 15px;
   width: 90% !important;
+  border: 1px solid #E0E0E0 !important;
 
   @media (min-width: $desktop-breakpoint) {
     width: 10% !important;

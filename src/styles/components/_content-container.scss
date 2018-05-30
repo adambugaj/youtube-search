@@ -31,9 +31,16 @@
   max-width: 80rem;
 
   @media (min-width: $desktop-breakpoint) {
-    max-width: 40rem;
     margin-bottom: 20px;
-    float: left;
+    float: right;
+    max-width: 40rem;
+  }
+
+  @media (min-width: $bigDesktop-breakpoint) {
+    max-width: 40rem;
+      margin: 0 auto;
+      margin-right: 30px;
+      float: right;
   }
 }
 
@@ -42,11 +49,15 @@
   margin-bottom: 20px;
 
   @media (min-width: $desktop-breakpoint) {
-    float: left;
-    margin-right: 30px;
-    margin-left: -35%;
     max-width: 60rem;
-    min-width: 60rem;
+    min-width: 50rem;
+  }
+
+  @media (min-width: $bigDesktop-breakpoint) {
+    max-width: 60rem;
+    min-width: 50rem;
+    margin-left: -130px;
+    float: left;
   }
 }
 

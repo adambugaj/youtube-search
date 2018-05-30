@@ -10,29 +10,31 @@ class Search extends React.Component {
     super(props);
     this.state = {
       data: [],
-      searchInput: props.value.searchInput ? props.value.searchInput : '',
+      searchInput: this.props.value.searchInput ? this.props.value.searchInput : '',
     };
   };
 
   onChangeInput = (e) => {
     const value = e.target.value;
+    this.setState(() => ({ searchInput: value }))
     // Youtube Api
     const key = 'AIzaSyBn2mtLpsUWsVx9P49PoJXFyhuy51b7xUk';
     const apiUrl = `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&q=${value}&type=video&key=${key}`;
-    this.setState(() => ({ searchInput: value }))
-
 
     // Connect with youtube api and fetch video data
     fetch(apiUrl)
     .then((response) => response.json())
     .then((result) => {
       result.items.map((video) => {
+
         const getImage = video.snippet.thumbnails.medium.url;
         const getTitle = video.snippet.title.substring(0, 30);
         const getDescription = video.snippet.description.substring(0, 100);
         const getVideoId = video.id.videoId;
-        const getChannelId = video.snippet.channelId
+        const getChannelId = video.snippet.channelId;
         const apiChannel = `https://www.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&id=${getChannelId}&key=${key}`
+
+    console.log(getChannelId)
 
         fetch(apiChannel)
         .then((response) => response.json())
@@ -64,9 +66,8 @@ class Search extends React.Component {
 // Po zatwierdzeniu przyciskiem submit wysyłamy dane do obiektu
   onSubmit = (e) => {
       e.preventDefault();
-      console.log(this.state.data);
       this.props.onSubmit({
-        data: this.state.data,
+        data: !!this.state.data ? this.state.data : this.props.value.data,
         searchInput: this.state.searchInput,
       }, {
         mainVideo: {
