@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { Card, CardMedia, CardText, CardTitle } from 'material-ui/Card';
 import LikeDislikeButton from './LikeVideo';
@@ -35,4 +36,10 @@ const MainContent = (props) => {
   )
 }
 
-export default MainContent;
+const mapStateToProps = (state) => {
+  return {
+    auth: !!state.auth.uid
+  };
+}
+
+export default connect(mapStateToProps)(MainContent);
